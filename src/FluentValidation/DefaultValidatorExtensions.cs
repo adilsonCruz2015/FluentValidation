@@ -1089,5 +1089,17 @@ namespace FluentValidation {
 		public static IRuleBuilderOptions<T, string> IsEnumName<T>(this IRuleBuilder<T, string> ruleBuilder, Type enumType, bool caseSensitive = true) {
 			return ruleBuilder.SetValidator(new StringEnumValidator(enumType, caseSensitive));
 		}
-	}
+
+    /// <summary>
+    /// Validate a Guid
+    /// </summary>
+    /// <typeparam name="T">Type of object being validated</typeparam>
+    /// <typeparam name="TProperty">Type of property being validated</typeparam>
+    /// <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+    /// <param name="guidEmpyt">Allows or does not allow an empty Guid</param>
+    /// <returns></returns>
+		public static IRuleBuilderOptions<T, TProperty> IsGuid<T, TProperty>(this IRuleBuilder<T, TProperty> ruleBuilder, bool allowEmptyGuid = true) {
+      return ruleBuilder.SetValidator(new GuidValidator(allowEmptyGuid));
+    }
+  }
 }
